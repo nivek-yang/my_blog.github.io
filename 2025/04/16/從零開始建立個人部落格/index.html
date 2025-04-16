@@ -27,7 +27,7 @@
 <meta property="og:description" content="從零開始建立個人部落格這篇文章將詳細記錄如何使用 Hexo 和 GitHub Pages 建立一個個人部落格的完整過程。從環境設置到部署上線，一步一步帶你了解整個流程。 1. 環境準備1.1 安裝必要工具首先，我們需要安裝以下工具：  Node.js（包含 npm） Git  在 macOS 上，可以使用 Homebrew 安裝： 12345678# 安裝 Homebrew（如果還沒安裝的話）&#x2F;b">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2025-04-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-16T17:25:01.981Z">
+<meta property="article:modified_time" content="2025-04-16T17:30:04.486Z">
 <meta property="article:author" content="Kevin Yang">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="GitHub Pages">
@@ -216,7 +216,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2025-04-17 01:25:01" itemprop="dateModified" datetime="2025-04-17T01:25:01+08:00">2025-04-17</time>
+      <time title="修改時間：2025-04-17 01:30:04" itemprop="dateModified" datetime="2025-04-17T01:30:04+08:00">2025-04-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -354,7 +354,7 @@
 <li><p>在 GitHub 上創建一個新的 repository：</p>
 <ul>
 <li>名稱格式必須為：<code>你的部落格名.github.io</code></li>
-<li>例如：<code>nivek-yang.github.io</code></li>
+<li>例如：<code>my_blog.github.io</code></li>
 <li>設置 repository 為 public</li>
 <li>不要初始化 README 文件</li>
 </ul>
@@ -378,14 +378,13 @@
 </ul>
 </blockquote>
 <h3 id="4-2-配置部署設置"><a href="#4-2-配置部署設置" class="headerlink" title="4.2 配置部署設置"></a>4.2 配置部署設置</h3><p>在 <code>_config.yml</code> 中添加部署配置：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:你的用戶名/你的部落格名.github.io.git</span>  <span class="comment"># 修改為你的 GitHub 用戶名</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:你的用戶名/你的部落格名.github.io.git</span>  <span class="comment"># 修改為你的 GitHub 用戶名跟你的部落格名</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p><strong>注意事項</strong>：</p>
 <ul>
 <li>建議使用 SSH 格式的 URL，避免每次部署都要輸入密碼</li>
 <li>如果使用 HTTPS 格式的 URL，每次部署都需要輸入 GitHub 的用戶名和密碼</li>
-<li>確保 <code>repo</code> 中的用戶名與你的 GitHub 用戶名一致</li>
 </ul>
 </blockquote>
 <h3 id="4-3-設置-SSH-金鑰"><a href="#4-3-設置-SSH-金鑰" class="headerlink" title="4.3 設置 SSH 金鑰"></a>4.3 設置 SSH 金鑰</h3><ol>
