@@ -305,7 +305,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新於</span>
-      <time title="修改時間：2025-04-17 01:06:07" itemprop="dateModified" datetime="2025-04-17T01:06:07+08:00">2025-04-17</time>
+      <time title="修改時間：2025-04-17 01:20:49" itemprop="dateModified" datetime="2025-04-17T01:20:49+08:00">2025-04-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -443,7 +443,7 @@
 <h2 id="4-GitHub-設置"><a href="#4-GitHub-設置" class="headerlink" title="4. GitHub 設置"></a>4. GitHub 設置</h2><h3 id="4-1-創建-GitHub-Repository"><a href="#4-1-創建-GitHub-Repository" class="headerlink" title="4.1 創建 GitHub Repository"></a>4.1 創建 GitHub Repository</h3><ol>
 <li><p>在 GitHub 上創建一個新的 repository：</p>
 <ul>
-<li>名稱格式必須為：<code>你的用戶名.github.io</code>  # 修改為你的 GitHub 用戶名</li>
+<li>名稱格式必須為：<code>你的部落格名.github.io</code>  # 修改為你的 GitHub 用戶名</li>
 <li>例如：<code>nivek-yang.github.io</code></li>
 <li>設置 repository 為 public</li>
 <li>不要初始化 README 文件</li>
@@ -462,13 +462,13 @@
 <blockquote>
 <p><strong>注意事項</strong>：</p>
 <ul>
-<li>Repository 名稱必須完全匹配 <code>你的用戶名.github.io</code></li>
+<li>Repository 名稱必須完全匹配 <code>你的部落格名.github.io</code></li>
 <li>確保 repository 設置為 public</li>
 <li>不要選擇任何初始化選項</li>
 </ul>
 </blockquote>
 <h3 id="4-2-配置部署設置"><a href="#4-2-配置部署設置" class="headerlink" title="4.2 配置部署設置"></a>4.2 配置部署設置</h3><p>在 <code>_config.yml</code> 中添加部署配置：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:你的用戶名/你的用戶名.github.io.git</span>  <span class="comment"># 修改為你的 GitHub 用戶名</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:你的用戶名/你的部落格名.github.io.git</span>  <span class="comment"># 修改為你的 GitHub 用戶名</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p><strong>注意事項</strong>：</p>
