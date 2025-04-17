@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/my_blog.github.io/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/my_blog.github.io/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/my_blog.github.io/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/my_blog.github.io/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/my_blog.github.io/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"nivek-yang.github.io","root":"/my_blog.github.io/","images":"/my_blog.github.io/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"找到 ${hits} 個搜索結果（用時 ${time} 毫秒）","hits":"找到 ${hits} 個搜索結果"}}</script><script src="/my_blog.github.io/js/config.js" defer></script>
+
+    <meta name="description" content="Python 函數裝飾器 (Function Decorator) 筆記✅ 什麼是函數裝飾器？ 裝飾器是一種用來修改或擴展函數功能的設計模式。它允許在不改變函數本身的情況下，將額外的邏輯附加到函數上。  裝飾器是高階函數 (Higher-order Function)：接收一個函數作為參數，並返回一個包裹在該函數的新函數 (Wrapper)。   函數裝飾器 (Function Decorator">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 函數裝飾器 (Function Decorator) 筆記">
+<meta property="og:url" content="https://nivek-yang.github.io/my_blog.github.io/2025/04/17/python%E5%87%BD%E6%95%B8%E8%A3%9D%E9%A3%BE%E5%99%A8%E7%AD%86%E8%A8%98/index.html">
+<meta property="og:site_name" content="旅行者的足跡">
+<meta property="og:description" content="Python 函數裝飾器 (Function Decorator) 筆記✅ 什麼是函數裝飾器？ 裝飾器是一種用來修改或擴展函數功能的設計模式。它允許在不改變函數本身的情況下，將額外的邏輯附加到函數上。  裝飾器是高階函數 (Higher-order Function)：接收一個函數作為參數，並返回一個包裹在該函數的新函數 (Wrapper)。   函數裝飾器 (Function Decorator">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-04-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-17T15:40:16.064Z">
+<meta property="article:author" content="Kevin Yang">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://nivek-yang.github.io/my_blog.github.io/2025/04/17/python%E5%87%BD%E6%95%B8%E8%A3%9D%E9%A3%BE%E5%99%A8%E7%AD%86%E8%A8%98/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://nivek-yang.github.io/my_blog.github.io/2025/04/17/python%E5%87%BD%E6%95%B8%E8%A3%9D%E9%A3%BE%E5%99%A8%E7%AD%86%E8%A8%98/","path":"2025/04/17/python函數裝飾器筆記/","title":"Python 函數裝飾器 (Function Decorator) 筆記"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Python 函數裝飾器 (Function Decorator) 筆記 | 旅行者的足跡</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/my_blog.github.io/js/utils.js" defer></script><script src="/my_blog.github.io/js/motion.js" defer></script><script src="/my_blog.github.io/js/sidebar.js" defer></script><script src="/my_blog.github.io/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/my_blog.github.io/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/my_blog.github.io/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">旅行者的足跡</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">探索世界的每一個角落</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜尋" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/my_blog.github.io/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-blog"><a href="/my_blog.github.io/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>blog</a></li><li class="menu-item menu-item-about"><a href="/my_blog.github.io/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-%E5%87%BD%E6%95%B8%E8%A3%9D%E9%A3%BE%E5%99%A8-Function-Decorator-%E7%AD%86%E8%A8%98"><span class="nav-number">1.</span> <span class="nav-text">Python 函數裝飾器 (Function Decorator) 筆記</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%85-%E4%BB%80%E9%BA%BC%E6%98%AF%E5%87%BD%E6%95%B8%E8%A3%9D%E9%A3%BE%E5%99%A8%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">✅ 什麼是函數裝飾器？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B8%E8%A3%9D%E9%A3%BE%E5%99%A8%E7%9A%84%E7%B5%90%E6%A7%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">函數裝飾器的結構</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%A1-%E7%82%BA%E4%BD%95%E8%A6%81%E4%BD%BF%E7%94%A8%E8%A3%9D%E9%A3%BE%E5%99%A8%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">💡 為何要使用裝飾器？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%9D-%E5%9F%BA%E6%9C%AC%E7%AF%84%E4%BE%8B"><span class="nav-number">1.3.</span> <span class="nav-text">📝 基本範例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%81%8B%E4%BD%9C%EF%BC%9A"><span class="nav-number">1.3.1.</span> <span class="nav-text">如何運作：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%84-%E5%B8%B6%E5%8F%83%E6%95%B8%E7%9A%84%E8%A3%9D%E9%A3%BE%E5%99%A8"><span class="nav-number">1.4.</span> <span class="nav-text">🔄 帶參數的裝飾器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B6%E5%8F%83%E6%95%B8%E7%AF%84%E4%BE%8B"><span class="nav-number">1.4.1.</span> <span class="nav-text">帶參數範例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B6%E5%8F%83%E6%95%B8%E8%A3%9D%E9%A3%BE%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="nav-number">1.4.2.</span> <span class="nav-text">帶參數裝飾器的工作原理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%91-%E5%87%BD%E6%95%B8%E8%A3%9D%E9%A3%BE%E5%99%A8%E7%9A%84%E5%A5%BD%E8%99%95%EF%BC%9A"><span class="nav-number">1.5.</span> <span class="nav-text">🔑 函數裝飾器的好處：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%9A-%E5%B8%B8%E8%A6%8B%E6%87%89%E7%94%A8%E5%A0%B4%E6%99%AF%EF%BC%9A"><span class="nav-number">1.6.</span> <span class="nav-text">📚 常見應用場景：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E8%A9%A6%E6%99%82%E5%A6%82%E4%BD%95%E5%9B%9E%E7%AD%94-function-decorator"><span class="nav-number">1.7.</span> <span class="nav-text">面試時如何回答 function decorator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%B0%A1%E5%96%AE%E8%A7%A3%E9%87%8B%EF%BC%9A"><span class="nav-number">1.7.1.</span> <span class="nav-text">1. 簡單解釋：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%B8%B8%E8%A6%8B%E6%87%89%E7%94%A8%E5%A0%B4%E6%99%AF%EF%BC%9A"><span class="nav-number">1.7.2.</span> <span class="nav-text">2. 常見應用場景：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%9F%BA%E6%9C%AC%E7%B5%90%E6%A7%8B%EF%BC%9A"><span class="nav-number">1.7.3.</span> <span class="nav-text">3. 基本結構：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%A4%BA%E7%AF%84%E7%AF%84%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.7.4.</span> <span class="nav-text">4. 示範範例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%80%83%E8%A9%A6%E9%87%8D%E9%BB%9E%EF%BC%9A"><span class="nav-number">1.7.5.</span> <span class="nav-text">5. 考試重點：</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Kevin Yang</p>
+  <div class="site-description" itemprop="description">分享旅行故事、景點介紹和旅遊攻略的部落格</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/my_blog.github.io/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分類</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">標籤</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://nivek-yang.github.io/my_blog.github.io/2025/04/17/python%E5%87%BD%E6%95%B8%E8%A3%9D%E9%A3%BE%E5%99%A8%E7%AD%86%E8%A8%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/my_blog.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Kevin Yang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旅行者的足跡">
+      <meta itemprop="description" content="分享旅行故事、景點介紹和旅遊攻略的部落格">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Python 函數裝飾器 (Function Decorator) 筆記 | 旅行者的足跡">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python 函數裝飾器 (Function Decorator) 筆記
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+      
+
+      <time title="創建時間：2025-04-17 00:00:00 / 修改時間：23:40:16" itemprop="dateCreated datePublished" datetime="2025-04-17T00:00:00+08:00">2025-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/my_blog.github.io/categories/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98/" itemprop="url" rel="index"><span itemprop="name">技術筆記</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Python-函數裝飾器-Function-Decorator-筆記"><a href="#Python-函數裝飾器-Function-Decorator-筆記" class="headerlink" title="Python 函數裝飾器 (Function Decorator) 筆記"></a>Python 函數裝飾器 (Function Decorator) 筆記</h1><h2 id="✅-什麼是函數裝飾器？"><a href="#✅-什麼是函數裝飾器？" class="headerlink" title="✅ 什麼是函數裝飾器？"></a>✅ 什麼是函數裝飾器？</h2><ul>
+<li><p>裝飾器是一種用來修改或擴展函數功能的設計模式。它允許在不改變函數本身的情況下，將額外的邏輯附加到函數上。</p>
+</li>
+<li><p>裝飾器是高階函數 (Higher-order Function)：接收一個函數作為參數，並返回一個包裹在該函數的新函數 (Wrapper)。</p>
+</li>
+</ul>
+<p>函數裝飾器 (Function Decorator) 是 Python 中一種強大的功能，允許我們修改或擴展現有函數的行為，而無需改變函數的代碼。它是一種語法糖，基於高階函數的概念，使得函數變得更加靈活和可重複使用。</p>
+<h3 id="函數裝飾器的結構"><a href="#函數裝飾器的結構" class="headerlink" title="函數裝飾器的結構"></a>函數裝飾器的結構</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">decorator</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        <span class="comment"># 在此處進行一些處理或擴展功能</span></span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>decorator(func)</code>：裝飾器函數，接收被裝飾的函數 <code>func</code>。</li>
+<li><code>wrapper(*args, **kwargs)</code>：內部包裝函數，可以修改或擴展 <code>func</code> 的行為。</li>
+<li><code>return wrapper</code>：返回包裝函數 <code>wrapper</code>，這樣我們就能在裝飾器中處理邏輯。</li>
+</ul>
+<h2 id="💡-為何要使用裝飾器？"><a href="#💡-為何要使用裝飾器？" class="headerlink" title="💡 為何要使用裝飾器？"></a>💡 為何要使用裝飾器？</h2><ol>
+<li><strong>功能擴展</strong>：可以在不修改函數內容的情況下，擴展或修改其行為。</li>
+<li><strong>程式碼重用</strong>：可以將重複的邏輯提取出來，放在裝飾器中，減少重複代碼。</li>
+<li><strong>增強函數功能</strong>：通過裝飾器可以給函數增加額外的功能，像是日誌、權限檢查、緩存等。</li>
+</ol>
+<h2 id="📝-基本範例"><a href="#📝-基本範例" class="headerlink" title="📝 基本範例"></a>📝 基本範例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">simple_decorator</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Before function call.&quot;</span>)</span><br><span class="line">        func()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;After function call.&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@simple_decorator</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">say_hello</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello!&quot;</span>)</span><br><span class="line"></span><br><span class="line">say_hello()</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Before function call.</span><br><span class="line">Hello!</span><br><span class="line">After function call.</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何運作："><a href="#如何運作：" class="headerlink" title="如何運作："></a>如何運作：</h3><ol>
+<li><code>@simple_decorator</code> 是裝飾器的語法糖，等同於 <code>say_hello = simple_decorator(say_hello)</code>。</li>
+<li>裝飾器會包裝 <code>say_hello</code> 函數，使它在被調用時執行額外的邏輯。</li>
+</ol>
+<h2 id="🔄-帶參數的裝飾器"><a href="#🔄-帶參數的裝飾器" class="headerlink" title="🔄 帶參數的裝飾器"></a>🔄 帶參數的裝飾器</h2><p>如果需要裝飾器接受參數，可以再定義一層函數。這樣可以讓裝飾器變得更加通用。</p>
+<h3 id="帶參數範例"><a href="#帶參數範例" class="headerlink" title="帶參數範例"></a>帶參數範例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">calculator</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculate_height</span>(<span class="params">weight, height</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">square_height</span>(<span class="params">height</span>):</span><br><span class="line">            height_in_meters = height / <span class="number">100</span></span><br><span class="line">            <span class="keyword">return</span> height_in_meters</span><br><span class="line">        <span class="keyword">return</span> func(weight, square_height(height))</span><br><span class="line">    <span class="keyword">return</span> calculate_height</span><br><span class="line"></span><br><span class="line"><span class="meta">@calculator</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bmi_calculator</span>(<span class="params">weight, height</span>):</span><br><span class="line">    <span class="keyword">return</span> weight / (height * height)</span><br><span class="line"></span><br><span class="line">result = bmi_calculator(<span class="number">50</span>, <span class="number">160</span>)</span><br><span class="line"><span class="built_in">print</span>(result)  <span class="comment"># 19.531249999999996</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解釋：</strong></p>
+<ol>
+<li><code>calculator</code> 是裝飾器，接受 <code>bmi_calculator</code> 作為參數。</li>
+<li>在 <code>calculate_height</code> 函數內部，我們調用 <code>square_height</code> 函數來將身高轉換為米，然後再計算 BMI。</li>
+</ol>
+<h3 id="帶參數裝飾器的工作原理："><a href="#帶參數裝飾器的工作原理：" class="headerlink" title="帶參數裝飾器的工作原理："></a>帶參數裝飾器的工作原理：</h3><ol>
+<li><code>@calculator</code> 會讓 <code>bmi_calculator</code> 被 <code>calculator</code> 包裝。</li>
+<li>裝飾器內的 <code>calculate_height</code> 會在 <code>bmi_calculator</code> 函數之前執行，進行額外處理。</li>
+</ol>
+<h2 id="🔑-函數裝飾器的好處："><a href="#🔑-函數裝飾器的好處：" class="headerlink" title="🔑 函數裝飾器的好處："></a>🔑 函數裝飾器的好處：</h2><ul>
+<li>可以動態地修改函數的行為。</li>
+<li>使得原始函數更簡潔，擴展的邏輯集中於裝飾器內部，提升代碼可維護性。</li>
+<li>允許代碼更加模組化和解耦。</li>
+</ul>
+<h2 id="📚-常見應用場景："><a href="#📚-常見應用場景：" class="headerlink" title="📚 常見應用場景："></a>📚 常見應用場景：</h2><ol>
+<li><p><strong>日誌記錄</strong>：記錄函數的調用及參數。</p>
+<p>範例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">log_decorator</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Calling <span class="subst">&#123;func.__name__&#125;</span> with arguments: <span class="subst">&#123;args&#125;</span>, <span class="subst">&#123;kwargs&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@log_decorator</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line">add(<span class="number">3</span>, <span class="number">4</span>)  <span class="comment"># 輸出: Calling add with arguments: (3, 4), &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>計時器</strong>：計算函數執行所花的時間。</p>
+<p>範例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timer_decorator</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        result = func(*args, **kwargs)</span><br><span class="line">        end_time = time.time()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Execution time: <span class="subst">&#123;end_time - start_time&#125;</span> seconds&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@timer_decorator</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">slow_function</span>():</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">slow_function()  <span class="comment"># 輸出: Execution time: 2.0xxxxxx seconds</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>權限檢查</strong>：在函數執行之前檢查用戶權限。</p>
+<p>範例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">permission_check</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">user_role, *args, **kwargs</span>):</span><br><span class="line">        <span class="keyword">if</span> user_role != <span class="string">&quot;admin&quot;</span>:</span><br><span class="line">            <span class="keyword">raise</span> PermissionError(<span class="string">&quot;You do not have permission to access this function.&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> func(user_role, *args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@permission_check</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete_user</span>(<span class="params">user_role, user_id</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;User <span class="subst">&#123;user_id&#125;</span> deleted.&quot;</span>)</span><br><span class="line"></span><br><span class="line">delete_user(<span class="string">&quot;admin&quot;</span>, <span class="number">123</span>)  <span class="comment"># 正常執行</span></span><br><span class="line">delete_user(<span class="string">&quot;guest&quot;</span>, <span class="number">123</span>)   <span class="comment"># 會拋出 PermissionError</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>緩存</strong>：為函數結果加上緩存，避免重複計算。</p>
+<p>範例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">cache_decorator</span>(<span class="params">func</span>):</span><br><span class="line">    cache = &#123;&#125;</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        <span class="keyword">if</span> args <span class="keyword">in</span> cache:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Returning cached result&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> cache[args]</span><br><span class="line">        result = func(*args, **kwargs)</span><br><span class="line">        cache[args] = result</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@cache_decorator</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">expensive_computation</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Performing expensive computation...&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> x * x</span><br><span class="line"></span><br><span class="line">expensive_computation(<span class="number">10</span>)  <span class="comment"># 輸出: Performing expensive computation...</span></span><br><span class="line">expensive_computation(<span class="number">10</span>)  <span class="comment"># 輸出: Returning cached result</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>這樣的範例可以幫助更好地理解每個應用場景，並將裝飾器的應用擴展到真實開發中。</p>
+<blockquote>
+<p>對於新手來說，理解 <code>function decorator</code> 可以從以下幾個步驟入手：</p>
+</blockquote>
+<ol>
+<li><p><strong>理解函數是物件</strong>：首先，理解 Python 函數是物件，可以作為參數傳遞給其他函數。</p>
+</li>
+<li><p><strong>學會基本裝飾器範例</strong>：如日誌記錄、計時等。先從簡單的範例開始，逐步理解其運作。</p>
+</li>
+<li><p><strong>從簡單的實例開始</strong>：不要一開始就嘗試複雜的場景。實踐簡單的範例來熟悉裝飾器的結構。</p>
+</li>
+<li><p><strong>了解如何使用 <code>@</code> 語法</strong>：<code>@decorator</code> 是 Python 中簡化使用裝飾器的語法，它背後實際上是將函數傳遞給裝飾器。</p>
+</li>
+</ol>
+<p>學會裝飾器後，可以根據需求進行進一步的學習和應用。</p>
+<h2 id="面試時如何回答-function-decorator"><a href="#面試時如何回答-function-decorator" class="headerlink" title="面試時如何回答 function decorator"></a>面試時如何回答 <code>function decorator</code></h2><h3 id="1-簡單解釋："><a href="#1-簡單解釋：" class="headerlink" title="1. 簡單解釋："></a>1. <strong>簡單解釋</strong>：</h3><p>裝飾器是一種用來修改或擴展函數功能的設計模式。它允許在不改變函數本身的情況下，將額外的邏輯附加到函數上。</p>
+<h3 id="2-常見應用場景："><a href="#2-常見應用場景：" class="headerlink" title="2. 常見應用場景："></a>2. <strong>常見應用場景</strong>：</h3><ul>
+<li>日誌記錄</li>
+<li>計時</li>
+<li>權限檢查</li>
+<li>緩存</li>
+</ul>
+<h3 id="3-基本結構："><a href="#3-基本結構：" class="headerlink" title="3. 基本結構："></a>3. <strong>基本結構</strong>：</h3><ul>
+<li><strong>裝飾器是高階函數</strong>：接收一個函數作為參數，並返回一個包裹該函數的新函數。</li>
+</ul>
+<h3 id="4-示範範例："><a href="#4-示範範例：" class="headerlink" title="4. 示範範例："></a>4. <strong>示範範例</strong>：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">decorator</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Before function execution&quot;</span>)</span><br><span class="line">        func()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;After function execution&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@decorator</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">greet</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello!&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-考試重點："><a href="#5-考試重點：" class="headerlink" title="5. 考試重點："></a>5. <strong>考試重點</strong>：</h3><ul>
+<li>知道裝飾器的語法 <code>@decorator</code></li>
+<li>解釋如何將邏輯封裝到函數外部</li>
+<li>理解裝飾器的用途與運作原理</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/my_blog.github.io/tags/Python/" rel="tag"># Python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/my_blog.github.io/2025/04/16/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E9%83%A8%E8%90%BD%E6%A0%BC/" rel="prev" title="我的第一篇部落格">
+                  <i class="fa fa-angle-left"></i> 我的第一篇部落格
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/my_blog.github.io/2025/04/17/django%E7%9A%84_set%E7%94%A8%E6%B3%95/" rel="next" title="Django &#96;_set&#96; 用法筆記（ForeignKey 反向關聯）">
+                  Django `_set` 用法筆記（ForeignKey 反向關聯） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Kevin Yang</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 強力驅動
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
